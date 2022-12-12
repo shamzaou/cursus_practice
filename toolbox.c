@@ -112,3 +112,8 @@ void    print_hex(char conversion_char, va_list ap, int *len_ptr)
     num = va_arg(ap, unsigned int);
     *len_ptr += to_hex(num, conversion_char);
 }
+
+void    print_percent(int *len_ptr)
+{
+    len_ptr += write(1, "%", 1);
+}
