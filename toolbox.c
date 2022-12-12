@@ -24,5 +24,91 @@ void    print_str(va_list ap, int *len_ptr)
 
 void    print_ptr(va_list ap, int *len_ptr)
 {
-    
+    void    *ptr;
+
+    ptr = va_arg(ap, uintptr_t);
+    *len_ptr += write(1, "0x", 2);
+    if (ptr == 0)
+        *len_ptr += write(1, "0", 1);
+    else
+        *len_ptr += to_hex(ptr, 'x');
+}
+
+int     to_hex(unsigned int ptr, char conversion)
+{
+    unsigned int    rem;
+    char            c;
+    static int      count;
+
+    count = 0;
+    rem = ptr % 16;
+    if (rem <= 9)
+        c = rem + '0';
+    else if (rem > 9 && rem < 16 && conversion == 'X')
+        c = (rem - 10) + 'A';
+    else if (rem > 9 && rem < 16 && conversion == 'x')
+        c = (rem - 10) + 'a';
+    ptr = ptr / 16;
+    if (ptr != 0)
+        to_hex(ptr , conversion);
+    write(1, &c, 1);
+    count++;
+    return(count);
+}
+
+void    print_int(va_list ap, int *len_ptr)
+{
+    int num;
+
+    num = va_arg(ap, int);
+    ft_putnbr(num, len_ptr);
+}
+
+int     ft_putchar(char c)
+{
+    return(write(1, &c, 1));
+}
+
+void     ft_putnbr(int nb, int *ptr)
+{
+    if (nb == -2147483648)
+    {
+        *ptr += write(1, "-2147483648", 11);
+        return (0);
+    }
+	if (nb < 0)
+    {
+		*ptr += ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10)
+    {
+		ft_putnbr(nb / 10, ptr);
+		nb = nb % 10;
+	}
+	if (nb < 10)
+        *ptr += ft_putchar(nb + 48);
+}
+
+void    print_uint(va_list ap, int *len_ptr)
+{
+    unsigned int    num;
+
+    num = va_arg(ap, unsigned int);
+    ft_putuint(num, len_ptr);
+}
+
+void    ft_putuint(unsigned int num, int *len_ptr)
+{
+    if (num >= 10)
+        ft_putuint(num / 10, len_ptr);
+    *len_ptr += ft_putchar(num % 10 + '0');
+}
+
+void    print_hex(char conversion_char, va_list ap, int *len_ptr)
+{
+    unsigned int num;
+
+    num = va_arg(ap, unsigned int);
+    *len_ptr += to_hex(num, conversion_char);
 }
