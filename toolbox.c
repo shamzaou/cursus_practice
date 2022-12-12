@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   toolbox.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/12 13:35:15 by shamzaou          #+#    #+#             */
+/*   Updated: 2022/12/12 13:48:39 by shamzaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void    print_char(va_list ap, int *len_ptr)
 {
     char c;
 
-    c = va_arg(ap, char);
+    c = va_arg(ap, int);
     *len_ptr += write(1, &c, 1);
 }
 
@@ -14,6 +26,11 @@ void    print_str(va_list ap, int *len_ptr)
     int     i;
 
     str = va_arg(ap, char *);
+    if (str == NULL)
+    {
+        *len_ptr += write(1, "(null)", 6);
+        return;
+    }
     i = 0;
     while (str[i])
     {
@@ -24,9 +41,9 @@ void    print_str(va_list ap, int *len_ptr)
 
 void    print_ptr(va_list ap, int *len_ptr)
 {
-    void    *ptr;
+    unsigned long    ptr;
 
-    ptr = va_arg(ap, uintptr_t);
+    ptr = (unsigned long) va_arg(ap, uintptr_t);
     *len_ptr += write(1, "0x", 2);
     if (ptr == 0)
         *len_ptr += write(1, "0", 1);
@@ -34,9 +51,9 @@ void    print_ptr(va_list ap, int *len_ptr)
         *len_ptr += to_hex(ptr, 'x');
 }
 
-int     to_hex(unsigned int ptr, char conversion)
+int     to_hex(unsigned long ptr, char conversion)
 {
-    unsigned int    rem;
+    unsigned long    rem;
     char            c;
     static int      count;
 
@@ -74,7 +91,7 @@ void     ft_putnbr(int nb, int *ptr)
     if (nb == -2147483648)
     {
         *ptr += write(1, "-2147483648", 11);
-        return (0);
+        return;
     }
 	if (nb < 0)
     {
@@ -115,5 +132,5 @@ void    print_hex(char conversion_char, va_list ap, int *len_ptr)
 
 void    print_percent(int *len_ptr)
 {
-    len_ptr += write(1, "%", 1);
+    *len_ptr += ft_putchar('%');
 }

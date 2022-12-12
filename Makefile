@@ -9,7 +9,7 @@ SRC = ft_printf.c\
 
 SRC_OBJ = $(SRC:.c=.o)
 
-all: &(NAME)
+all: $(NAME)
 
 $(NAME): $(SRC_OBJ)
 	ar -r $(NAME) $(SRC_OBJ)

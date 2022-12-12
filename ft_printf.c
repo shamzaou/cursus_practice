@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/12 13:35:06 by shamzaou          #+#    #+#             */
+/*   Updated: 2022/12/12 13:35:46 by shamzaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int     ft_printf(const char *format, ...)
@@ -9,6 +21,7 @@ int     ft_printf(const char *format, ...)
 
     va_start(ap, format);
     i = 0;
+    len = 0;
     len_ptr = &len;
     while (format[i])
     {
