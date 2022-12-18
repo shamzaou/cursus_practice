@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/18 14:21:51 by shamzaou          #+#    #+#             */
+/*   Updated: 2022/12/18 14:21:54 by shamzaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 #include <stdio.h>
 #include <unistd.h>
-#include "ft_printf.h"
 
-int main(void)
+int	main(void)
 {
-    ft_printf("hello %% %d", -42);
+	ft_printf("hello %% %d", -42);
 }
