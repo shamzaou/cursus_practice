@@ -3,3 +3,4 @@ ft_printf.h.gch
 printfTester/
 *.o
 test.c
+*.a
