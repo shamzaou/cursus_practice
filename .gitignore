@@ -4,3 +4,4 @@ printfTester/
 *.o
 test.c
 *.a
+.DS_Store
