@@ -1,11 +1,13 @@
 NAME = libftprintf.a
 
-CC = gcc
+CC = clang
 
 FLAGS = -Wall -Wextra -Werror
 
 SRC = ft_printf.c\
-		toolbox.c\
+		print_csp.c\
+		print_hex.c\
+		print_nbr.c
 
 SRC_OBJ = $(SRC:.c=.o)
 
