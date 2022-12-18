@@ -1,3 +1,4 @@
 a.out
 ft_printf.h.gch
 printfTester/
+*.o
