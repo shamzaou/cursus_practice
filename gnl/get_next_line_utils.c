@@ -76,6 +76,7 @@ void    ft_broomstick(t_gnl **stash)
     if (stash == NULL || clean_node == NULL)
         return;
     clean_node->content = NULL;
+    clean_node->next = NULL;
     last = ft_lst_get_last(*stash);
     i = 0;
     while (last->content[i] && last->content[i] != '\n')

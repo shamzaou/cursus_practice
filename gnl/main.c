@@ -20,6 +20,7 @@ int main(void)
     int fd;
 
     fd = open("files/textf", 0);
+    line = NULL;
     while ( 1 )
     {
         line = get_next_line(fd);
