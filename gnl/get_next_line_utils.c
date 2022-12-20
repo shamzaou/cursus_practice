@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 21:32:54 by shamzaou          #+#    #+#             */
-/*   Updated: 2022/12/21 00:29:40 by shamzaou         ###   ########.fr       */
+/*   Updated: 2022/12/21 01:34:13 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void    ft_broomstick(t_gnl **stash)
     j = 0;
     while (last->content[i])
         clean_node->content[j++] = last->content[i++];
-    clean_node->content[i] = '\0';
+    clean_node->content[j] = '\0';
     free_stash(*stash);
     *stash = clean_node;
 }

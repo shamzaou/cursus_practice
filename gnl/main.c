@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:41:27 by shamzaou          #+#    #+#             */
-/*   Updated: 2022/12/21 00:19:46 by shamzaou         ###   ########.fr       */
+/*   Updated: 2022/12/21 01:44:57 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int main()
+int main(void)
 {
-    int     fd;
-    char    *line;
+    char *line;
+    int fd;
 
     fd = open("files/textf", 0);
-    while (1)
+    while ( 1 )
     {
         line = get_next_line(fd);
-        if (!line)
+        
+        if (line == NULL)
             break;
         printf("%s", line);
         free(line);
     }
-    return (0);
 }

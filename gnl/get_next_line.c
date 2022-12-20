@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:41:38 by shamzaou          #+#    #+#             */
-/*   Updated: 2022/12/21 00:27:11 by shamzaou         ###   ########.fr       */
+/*   Updated: 2022/12/21 01:28:50 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void    line_it(char **line, t_gnl *stash)
     if (!stash)
         return;
     malloc_line(line, stash);
-    if (!(*line))
+    if (*line == NULL)
         return;
     j = 0;
     while (stash)
