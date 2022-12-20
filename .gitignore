@@ -5,3 +5,4 @@ printfTester/
 test.c
 *.a
 .DS_Store
+.vscode/tasks.json
