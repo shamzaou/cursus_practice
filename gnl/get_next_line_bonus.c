@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:41:38 by shamzaou          #+#    #+#             */
-/*   Updated: 2022/12/21 01:28:50 by shamzaou         ###   ########.fr       */
+/*   Updated: 2022/12/21 19:37:09 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 char    *get_next_line(int fd)
 {
-    static t_gnl    *stash = NULL;
+    static t_gnl    *stash[1024];
     char            *line;
     
-    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
+    if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
         return (NULL);
     line = NULL;
-    read_and_stash(fd, &stash);
-    if (!stash)
+    read_and_stash(fd, &stash[fd]);
+    if (!stash[fd])
         return (NULL);
-    line_it(&line, stash);
-    ft_broomstick(&stash);
+    line_it(&line, stash[fd]);
+    ft_broomstick(&stash[fd]);
     if(line[0] == '\0')
     {
-        free_stash(stash);
-        stash = NULL;
+        free_stash(stash[fd]);
+        stash[fd] = NULL;
         free(line);
         return (NULL);
     }

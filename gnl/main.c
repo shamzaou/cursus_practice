@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:41:27 by shamzaou          #+#    #+#             */
-/*   Updated: 2022/12/21 01:44:57 by shamzaou         ###   ########.fr       */
+/*   Updated: 2022/12/21 19:42:45 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@
 int main(void)
 {
     char *line;
-    int fd;
+    int fd1;
+    int fd2;
 
-    fd = open("files/textf", 0);
-    line = NULL;
-    while ( 1 )
-    {
-        line = get_next_line(fd);
-        
-        if (line == NULL)
-            break;
-        printf("%s", line);
-        free(line);
-    }
+    fd1 = open("files/textf", 0);
+    fd2 = open("files/text1", 0);
+    line = get_next_line(fd1);
+    printf("%s", line);
+    line = get_next_line(fd2);
+    printf("%s", line);
+    line = get_next_line(fd1);
+    printf("%s", line);
+    
 }
