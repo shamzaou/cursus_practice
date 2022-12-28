@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   testn.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:41:38 by shamzaou          #+#    #+#             */
-/*   Updated: 2022/12/28 17:15:21 by shamzaou         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:35:37 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 char    *get_next_line(int fd)
 {
-    static t_gnl    *stash[OPEN_MAX];
+    static t_gnl    *stash = NULL;
     char            *line;
     
+    stash = NULL;
     if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
         return (NULL);
     line = NULL;
-    read_and_stash(fd, &stash[fd]);
-    if (!stash[fd])
+    read_and_stash(fd, &stash);
+    if (!stash)
         return (NULL);
-    line_it(&line, stash[fd]);
-    ft_broomstick(&stash[fd]);
+    line_it(&line, stash);
+    ft_broomstick(&stash);
     if(line[0] == '\0')
     {
-        free_stash(stash[fd]);
-        stash[fd] = NULL;
+        free_stash(stash);
+        stash = NULL;
         free(line);
         return (NULL);
     }
@@ -41,7 +42,6 @@ void    read_and_stash(int fd, t_gnl **stash)
     char    *buff;
 
     readed = 1;
-    
     while (!nl_found(*stash) && readed != 0)
     {
         buff = malloc((BUFFER_SIZE + 1) * sizeof(char));

@@ -1,11 +1,21 @@
-#ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/28 16:08:24 by shamzaou          #+#    #+#             */
+/*   Updated: 2022/12/28 17:14:17 by shamzaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef GET_NEXT_LINE_BONUS_H
+#define GET_NEXT_LINE_BONUS_H
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
+#include <limits.h>
 
 typedef struct  gnl_list
 {
@@ -17,9 +27,6 @@ typedef struct  gnl_list
 #  define BUFFER_SIZE 5
 # endif
 
-# ifndef FD_SIZE
-#  define FD_SIZE 42
-# endif
 char    *get_next_line(int fd);
 void    read_and_stash(int fd, t_gnl **stash);
 int     nl_found(t_gnl *stash);
